@@ -6,13 +6,24 @@ const NavBar = () => {
     <nav className="container mx-auto flex justify-between py-4 px-2">
       <ul className="flex gap-3">
         <li>
-          <Link href={"/"}>Home</Link>
+          <Link href={"/"} className="font-semibold">
+            Home
+          </Link>
         </li>
         <li>
-          <Link href={"/destinations"}>Destinations</Link>
+          <Link href={"/destinations"} className="font-semibold">
+            Destinations
+          </Link>
         </li>
         <li>
-          <Link href={"/add-destination"}>Add Destination</Link>
+          <Link href={"/my-bookings"} className="font-semibold">
+            My Bookings
+          </Link>
+        </li>
+        <li>
+          <Link href={"/add-destination"} className="font-semibold">
+            Add Destination
+          </Link>
         </li>
       </ul>
       <div>
@@ -25,13 +36,19 @@ const NavBar = () => {
       </div>
       <ul className="flex gap-3">
         <li>
-          <Link href={"/profile"}>Profile</Link>
+          <Link href={"/profile"} className="font-semibold">
+            Profile
+          </Link>
         </li>
         <li>
-          <Link href={"/login"}>Login</Link>
+          <Link href={"/login"} className="font-semibold">
+            Login
+          </Link>
         </li>
         <li>
-          <Link href={"/signup"}>Sign Up</Link>
+          <Link href={"/signup"} className="font-semibold">
+            Sign Up
+          </Link>
         </li>
       </ul>
     </nav>

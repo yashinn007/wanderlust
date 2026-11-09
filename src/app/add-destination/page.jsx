@@ -10,6 +10,8 @@ import {
   TextArea,
   Button,
 } from "@heroui/react";
+import { toast } from "react-toastify";
+import { revalidateDestinationList } from "../lib/actions";
 
 const AddDestinationPage = () => {
   const onSubmit = async (e) => {
@@ -25,8 +27,9 @@ const AddDestinationPage = () => {
       },
       body: JSON.stringify(data),
     });
-    const result = await res.json();
-    console.log(result);
+
+    await revalidateDestinationList();
+    toast.success("Destination added successfully!");
   };
 
   return (
