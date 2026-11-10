@@ -1,5 +1,6 @@
 "use client";
 
+import { revalidateDestinationList } from "@/lib/actions";
 import {
   FieldError,
   Input,
@@ -11,7 +12,6 @@ import {
   Button,
 } from "@heroui/react";
 import { toast } from "react-toastify";
-import { revalidateDestinationList } from "../lib/actions";
 
 const AddDestinationPage = () => {
   const onSubmit = async (e) => {

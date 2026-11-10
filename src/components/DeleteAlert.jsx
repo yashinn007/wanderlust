@@ -4,7 +4,7 @@ import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { toast } from "react-toastify";
-import { revalidateDestinationList } from "@/app/lib/actions";
+import { revalidateDestinationList } from "@/lib/actions";
 
 export function DeleteAlert({ destination }) {
   const router = useRouter();

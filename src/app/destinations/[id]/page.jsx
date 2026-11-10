@@ -1,6 +1,7 @@
-import { revalidateDestinationPaths } from "@/app/lib/actions";
+import BookingCard from "@/components/BookingCard";
 import { DeleteAlert } from "@/components/DeleteAlert";
 import { EditModal } from "@/components/EditModal";
+import { revalidateDestinationPaths } from "@/lib/actions";
 import Image from "next/image";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
@@ -20,7 +21,6 @@ const DestinationDetailsPage = async ({ params }) => {
     description,
   } = destination;
 
-  console.log(destination);
   return (
     <div className="container mx-auto  pt-5 pb-15">
       <div className="flex justify-end items-center gap-2 mb-5">
@@ -40,30 +40,29 @@ const DestinationDetailsPage = async ({ params }) => {
         />
       </div>
 
-      <div className="space-y-1 px-2 pt-2 mb-10">
-        <span className="text-gray-500">
-          <IoLocationSharp className="inline mr-2" />
-          {country}
-        </span>
+      <div className="grid grid-cols-3 gap-12">
+        <div className="space-y-1 px-2 pt-2 mb-10 col-span-2 p-4">
+          <span className="text-gray-500">
+            <IoLocationSharp className="inline mr-2" />
+            {country}
+          </span>
 
-        <div className="flex justify-between items-center gap-2 min-w-0">
           <h3 className="text-3xl font-semibold min-w-0 truncate">
             {destinationName}
           </h3>
 
-          <p className="text-3xl font-semibold shrink-0 whitespace-nowrap">
-            ${price}
+          <span className="text-gray-500">
+            <FaCalendarAlt className="inline mr-2" />
+            {duration}
+          </span>
+          <p className="text-lg text-gray-700 mt-10">
+            <span className="font-semibold">Description:</span> {description}
           </p>
         </div>
-
-        <span className="text-gray-500">
-          <FaCalendarAlt className="inline mr-2" />
-          {duration}
-        </span>
+        <div className="border border-blue-200">
+          <BookingCard destination={destination}></BookingCard>
+        </div>
       </div>
-      <p className="text-lg text-gray-700">
-        <span className="font-semibold">Description:</span> {description}
-      </p>
     </div>
   );
 };
