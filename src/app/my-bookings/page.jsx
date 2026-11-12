@@ -1,10 +1,10 @@
+export const dynamic = "force-dynamic";
 import { BookingDeleteAlert } from "@/components/BookingDeleteAlert";
 import { auth } from "@/lib/auth";
 import { Button } from "@heroui/react";
 import { headers } from "next/headers";
 import Image from "next/image";
 import { FaEye } from "react-icons/fa";
-import { FaDeleteLeft } from "react-icons/fa6";
 
 const MyBookingsPage = async () => {
   const session = await auth.api.getSession({
