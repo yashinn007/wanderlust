@@ -1,6 +1,7 @@
 "use client";
 
 import { revalidateDestinationList } from "@/lib/actions";
+import { authClient } from "@/lib/auth-client";
 import {
   FieldError,
   Input,
@@ -20,13 +21,20 @@ const AddDestinationPage = () => {
     const data = Object.fromEntries(formData.entries());
     //console.log(data);
 
-    const res = await fetch("http://localhost:5000/destination", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    //get jwt token in (client component)
+    const { data: tokenData } = await authClient.token();
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/destination`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    });
+    );
 
     await revalidateDestinationList();
     toast.success("Destination added successfully!");

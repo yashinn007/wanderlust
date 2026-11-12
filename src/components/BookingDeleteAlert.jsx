@@ -1,16 +1,24 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { FaDeleteLeft } from "react-icons/fa6";
 
 export function BookingDeleteAlert({ bookingId }) {
   const handleCancelBooking = async () => {
-    const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
+    //get jwt token in (client component)
+    const { data: tokenData } = await authClient.token();
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${bookingId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
       },
-    });
+    );
     const data = await res.json();
 
     window.location.reload();

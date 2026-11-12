@@ -5,18 +5,23 @@ import { useRouter } from "next/navigation";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import { revalidateDestinationList } from "@/lib/actions";
+import { authClient } from "@/lib/auth-client";
 
 export function DeleteAlert({ destination }) {
   const router = useRouter();
 
   const handleDelete = async () => {
+    //get jwt token in (client component)
+    const { data: tokenData } = await authClient.token();
+
     try {
       const res = await fetch(
-        `http://localhost:5000/destination/${destination._id}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${destination._id}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
           },
         },
       );

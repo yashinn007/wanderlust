@@ -2,6 +2,8 @@ import BookingCard from "@/components/BookingCard";
 import { DeleteAlert } from "@/components/DeleteAlert";
 import { EditModal } from "@/components/EditModal";
 import { revalidateDestinationPaths } from "@/lib/actions";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
@@ -9,7 +11,20 @@ import { IoLocationSharp } from "react-icons/io5";
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:5000/destination/${id}`);
+  //get jwt token in (server component)
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  //console.log("token:", token);
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
+  );
   const destination = await res.json();
   const {
     _id,
