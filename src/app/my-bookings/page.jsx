@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { BookingDeleteAlert } from "@/components/BookingDeleteAlert";
 import { auth } from "@/lib/auth";
 import { Button } from "@heroui/react";
