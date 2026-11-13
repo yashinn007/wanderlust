@@ -23,8 +23,14 @@ const DestinationDetailsPage = async ({ params }) => {
       headers: {
         authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
     },
   );
+  if (!res.ok) {
+    const errorBody = await res.text();
+    console.error("Destination fetch failed:", res.status, errorBody);
+    throw new Error(`Backend error ${res.status}: ${errorBody}`);
+  }
   const destination = await res.json();
   const {
     _id,
