@@ -28,7 +28,7 @@ const MyBookingsPage = async () => {
   //console.log(Bookings);
   return (
     <div className="container mx-auto py-10 ">
-      <h2 className="text-2xl font-semibold">My Bookings:</h2>
+      <h2 className="text-2xl font-semibold">My Bookings</h2>
       <div className="w-[60vw] mx-auto">
         {Bookings.map((Booking) => (
           <div
